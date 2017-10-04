@@ -11,41 +11,50 @@
 -}
 
 import Data.List
+import Data.Char
 
 -- -------------------- Chinese Remainder Theorem (crt) --------------------
 
 {-
-The "generateSolutions" (generate brute-force-list) function creates an infinite list of solutions to
-the equation a=x%n, where the items in the list are possible x values.
-It takes two integers and returns an infinite list.
+The "generateSolutions" (generate brute-force-list) function creates an
+infinite list of solutions to the equation a=x%n, where the items in the list
+are possible x values.
+
+It takes two integers & the possible upper limit and returns a finite list.
 -}
 generateSolutions :: Integer -> Integer -> Integer -> [Integer]
 generateSolutions a n max = [a, a+n..max]
 
 {-
-The "generateSolutions'" (generateSolutions helper) function creates an ordered list of lists which contains possible solutions
-to each of the (a, n) tuples to the equation a=x%n provided as parameters in the form of a list of tuples.
+The "generateSolutions'" (generateSolutions helper) function creates an ordered
+list of lists which contains possible solutions to each of the (a, n) tuples to
+the equation a=x%n provided as parameters in the form of a list of tuples.
+
 It takes a list of tuples as input and returns a list of lists.
 -}
---generateSolutions' :: [(Integer, Integer)] -> Integer -> [Integer]
+generateSolutions' :: [(Integer, Integer)] -> Integer -> [[Integer]]
 generateSolutions' [] _ = []
 generateSolutions' (n:ns) max = generateSolutions (fst n) (snd n) max : generateSolutions' ns max
 
 {-
-The "maxPossible" function finds the maximum possible number where exactly one number less than this max solves crt
+The "maxPossible" function finds the maximum possible number where exactly
+one number less than this max satisfies the Chinese Remainder Theorem (crt)
 -}
 maxPossible :: [(Integer, Integer)] -> Integer
 maxPossible [] = 1
 maxPossible (n:ns) = (snd n) * maxPossible ns
 
 {-
-The "commonIntersection" function finds the common integers across a list of lists of integers
+The "commonIntersection" function finds the common integers across a list of
+lists of integers
 -}
---commonIntersection :: (Foldable t, Eq a) => t [a] -> [a]
+commonIntersection :: (Foldable t, Eq a) => t [a] -> [a]
 commonIntersection ls = foldl1 intersect ls
 
 {-
-The Chinese Remainder Theorem "crt" function calculates the unique number x which satisfies a = x%n
+The Chinese Remainder Theorem "crt" function calculates the unique number x
+which satisfies a = x%n.
+
 It takes a list of tuples as inputs and returns a new, single tuple, (a, n)
     a = the smallest # that satisfies the above equation
     n = the product of the n terms
@@ -59,18 +68,23 @@ crt ls = (head $ commonIntersection $ generateSolutions' ls $ maxPossible ls, ma
 -- -------------------- k-composite --------------------
 
 {-
-"factors" generates a list of factors for a given integer, using "isFactor" helper function.
-It takes one integer, and returns a list of ints, including 1 and the input itself.
+The "factors" function generates a list of factors for a given integer, using
+"isFactor" helper function.
+
+It takes one integer, and returns a list of ints.
 -}
 factors :: Integral a => a -> [a]
-factors x = [n | n <- [2..x `div` 2], (x `mod` n) == 0]
+factors x = [n | n <- [2..x `div` 2], (x `mod` n) == 0] -- skip 1 & self
 
 {-
-"kcomposite", given k, produces the ordered (infinite) list of positive k-composite numbers
+"kcomposite", given k, produces the ordered (infinite) list of positive
+k-composite numbers.
+
 It takes one integer, k, and returns an infinite list of integers
 -}
-kcomposite ::  Int -> [Int]
-kcomposite k = [x | x <- [1..], length (factors x) == k] -- no need to adjust, "factors" already extracts proper factors
+kcomposite ::  Int -> [Int] -- no need to adjust, "factors" already extracts proper factors
+kcomposite k = [x | x <- [1..], length (factors x) == k] 
+                                                         
 
 
 
@@ -85,15 +99,18 @@ Given plaintext, the "anagramEncode" function implements an encoding procedure, 
 -}
 
 {-
-The "padX" function takes a String and pads it with X's until the length is 2-composite
+The "padX" function takes a String and pads it with X's until the length is
+2-composite.
+
+It takes a String and returns a String.
 -}
 padX :: [Char] -> [Char]
-padX ls | (length $ factors $ length ls) - 2 == 2 = ls
+padX ls | (length $ factors $ length ls) == 2 = map toUpper ls -- normalize
         | otherwise = padX (ls ++ "X")
 
 {-
 "Boxes" up a string based on the desired column value
-Takes a String and integer (column value) and returns a 2d array of characters
+It takes a String and integer (column value) and returns a 2d array of characters
 -}
 boxString :: [Char] -> Int -> [[Char]]
 boxString [] _ = []
@@ -104,7 +121,7 @@ Reads the matrix of characters column-wise.
 Takes a 2d array of characters and returns an array of characters (String)
 -}
 getColumns :: [[Char]] -> [Char]
-getColumns ls = [ns !! 0 | ns <- ls] ++ getColumns (map (drop 1) ls)
+getColumns ls = head ls ++ getColumns (map (drop 1) ls)
 
 {-
 Encrypts messages using algorithm above.
