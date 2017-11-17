@@ -81,6 +81,10 @@ Provides an indication whether the given jug values can produce desired value.
         z    the desired amount of gallons
 @return Bool Whether solution for Bézout's identity for given inputs exists,
              ax + by = z
+<<<<<<< HEAD
+=======
+            
+>>>>>>> origin/master
 -}
 measureWater :: Int -> Int -> Int -> Bool
 measureWater x y z | z > x + y  = False -- impossible case, False
