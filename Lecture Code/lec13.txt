@@ -1,0 +1,25 @@
+--
+-- Tuesday, November 1, 2017
+--
+{-
+   Java Generics ...
+
+   Some examples:
+
+      TypeUnSafe00.java
+      TypeSafe00.java
+      TypeSafe01.java
+      CoAndContraEx.java
+
+   Note that this file:
+      evalExpr02.hs
+   is only an example of the parts that an interpreter system for a
+   small language contains.
+
+   1) The tokenizer is what is also called a lexer
+   2) The parser takes the tokens from the tokenizer and translates it
+      into a parse tree
+   3) The eval function takes the parse tree and evaluates/interprets
+      the tree
+-}
+

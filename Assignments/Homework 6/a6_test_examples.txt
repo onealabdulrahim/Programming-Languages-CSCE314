@@ -1,0 +1,20 @@
+=== Some test examples for expression evaluation
+Expression 1: (Equals (Equals(Equals (Plus (IntLit 2) (IntLit 3)) (IntLit 5)) (BoolLit False)) (Equals (Minus (Plus (Multiplies (IntLit 1) (IntLit 2)) (IntLit 2)) (IntLit 1)) (Exponentiate (IntLit 3) (IntLit 1))))
+Result 1: BoolLit False
+
+
+Expression 2: (Equals (Equals (Equals (Plus (Exponentiate (IntLit 2) (IntLit 2)) (IntLit 2)) (IntLit 6)) (BoolLit True)) (Equals (Minus (IntLit 2) (Multiplies (IntLit 1) (IntLit 2))) (IntLit 0)))
+Result 2: BoolLit True
+
+Expression 3: (Minus (Plus (IntLit 2) (Multiplies (Exponentiate (IntLit 2) (IntLit 3)) (IntLit 4))) (IntLit 1))
+Result 3: IntLit 33
+
+Expression 4: (Minus (Plus (Exponentiate (IntLit 3) (IntLit 1)) (Exponentiate (IntLit 2) (IntLit 2))) (Multiplies (IntLit 3) (IntLit 2)))
+Result 4: IntLit 1
+
+=== Some test examples for log2Sim
+Expression 1: (Equals (BoolLit True) (Equals (IntLit 16) (Multiplies (IntLit 4) (Exponentiate (IntLit 2) (IntLit 2)))))
+Result 1： Equals (BoolLit True) (Equals (IntLit 4) (Plus (IntLit 2) (Multiplies (IntLit 2) (IntLit 1))))
+
+Expression 2： (Equals (Exponentiate (Multiplies (IntLit 2) (IntLit 8)) (IntLit 2)) (Multiplies (Exponentiate (IntLit 4) (IntLit 4)) (IntLit 1)))
+Result 2: Equals (Multiplies (IntLit 2) (Plus (IntLit 1) (IntLit 3))) (Plus (Multiplies (IntLit 4) (IntLit 2)) (IntLit 0))
