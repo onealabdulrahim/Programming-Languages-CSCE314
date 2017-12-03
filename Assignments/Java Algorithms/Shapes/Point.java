@@ -9,11 +9,11 @@
 ** Lecture Slides
 ** Ken Arnold et al, The Java Programming Language (4e)
 
-D:\OneDrive\Documents\TAMU\"Computer Science"\"CSCE 314"\Assignments\"Homework 9" */
+*/
 
 import java.util.Objects;
 
-public class Point {
+public class Point{
     public double x;
     public double y;
 

@@ -9,11 +9,11 @@
 ** Lecture Slides
 ** Ken Arnold et al, The Java Programming Language (4e)
 
-D:\OneDrive\Documents\TAMU\"Computer Science"\"CSCE 314"\Assignments\"Homework 9" */
+*/
 
 import java.util.Objects;
 
-public class Triangle extends Shape {
+public class Triangle extends Shape implements Comparable<Shape>{
     private final Point A, B, C; // points
     
 
@@ -52,6 +52,14 @@ public class Triangle extends Shape {
         // Centroid for a triangle
         // C = ((x1+x2+x3)/3 , (y1+y2+y3)/3)
         return new Point((A.x + B.x + C.x) / 3, (A.y + B.y + C.y) / 3);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Triangle ").append(A).append("-").append(B).append("-").append(C);
+        
+        return sb.toString();
     }
 
     @Override

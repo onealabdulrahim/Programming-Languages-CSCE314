@@ -7,9 +7,7 @@
 ** http://www.skylit.com/javamethods/faqs/javaindos.html
 ** https://docs.oracle.com/javase/9/
 ** Lecture Slides
-** Ken Arnold et al, The Java Programming Language (4e)
-
-D:\OneDrive\Documents\TAMU\"Computer Science"\"CSCE 314"\Assignments\"Homework 9" */
+** Ken Arnold et al, The Java Programming Language (4e) */
 
 import java.util.Scanner;
 

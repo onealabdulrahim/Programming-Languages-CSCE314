@@ -9,7 +9,7 @@
 ** Lecture Slides
 ** Ken Arnold et al, The Java Programming Language (4e)
 
-D:\OneDrive\Documents\TAMU\"Computer Science"\"CSCE 314"\Assignments\"Homework 9" */
+*/
 
 import java.util.Objects;
 
@@ -46,6 +46,14 @@ public class Rectangle extends Shape {
      */
     public Point position() {
         return new Point((A.x + B.x) / 2, (A.y + B.y) / 2);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Rectangle ").append(A).append("-").append(B);
+        
+        return sb.toString();
     }
 
     @Override

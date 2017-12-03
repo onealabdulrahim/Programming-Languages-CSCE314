@@ -9,7 +9,7 @@
 ** Lecture Slides
 ** Ken Arnold et al, The Java Programming Language (4e)
 
-D:\OneDrive\Documents\TAMU\"Computer Science"\"CSCE 314"\Assignments\"Homework 9" */
+*/
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -61,7 +61,13 @@ public class Main {
     public static void main(String[] args) {
         Shape[] shapes = parseInputs(args);
         double area = AreaCalculator.calculate(shapes);
-        System.out.printf("The total area for the %d objects is %.2f units squared"
+        System.out.printf("The total area for the %d objects is %.2f units squared\n\n\n"
                         , shapes.length, area);
+        
+        Arrays.sort(shapes);
+        int count = 0;
+        for (Shape s: shapes) {
+            System.out.println(++count + ") "+s+"\t\t area="+s.area());
+        }
     }
 }

@@ -9,12 +9,17 @@
 ** Lecture Slides
 ** Ken Arnold et al, The Java Programming Language (4e)
 
-D:\OneDrive\Documents\TAMU\"Computer Science"\"CSCE 314"\Assignments\"Homework 9" */
+*/
 
 
-public abstract class Shape {
+public abstract class Shape implements Comparable<Shape>{
     public abstract double area();
     public abstract Point position();
     public abstract boolean equals(Object obj);
     public abstract int hashCode();
+    
+    @Override
+    public int compareTo(Shape shape) {
+        return (int) (this.area() - shape.area());
+    }
 }
